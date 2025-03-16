@@ -26,6 +26,8 @@ jobs:
           - os: windows-latest
             name: "Windows x64 MSVC"
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Setup Pragma
         uses: Silverlan/test_pragma_installer/github_actions/generate_installer@main
         with:
