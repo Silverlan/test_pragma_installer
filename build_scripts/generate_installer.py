@@ -55,6 +55,12 @@ definitions = [
 output_dir = "E:/projects/pragma/deps/pragma_installer"
 output_filename = "pragma_setup"
 
+file_path = cur_dir + "/installer/pragma.iss"
+if os.path.exists(file_path):
+    print("File exists")
+else:
+    print("File does not exist")
+
 cmd = [
     iscc,
     cur_dir + "/installer/pragma.iss",
