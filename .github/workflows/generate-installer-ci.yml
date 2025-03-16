@@ -36,7 +36,6 @@ jobs:
           mkdir deps
           mkdir install
 
-
       - name: Setup Pragma
         uses: Silverlan/test_pragma_installer/github_actions/generate_installer@main
         with:
