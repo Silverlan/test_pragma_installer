@@ -48,3 +48,11 @@ jobs:
           version: "1.0.0"
           install-directory: "${{ github.workspace }}/pragma/install"
           deps-directory: "${{ github.workspace }}/pragma/deps"
+
+      - name: Publish Installer
+        uses: Silverlan/Releaser/releaser/composite@main
+        with:
+          tag: "v1.0"
+          rm: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: "${{ github.workspace }}/pragma/deps/pragma_installer/pragma_setup.exe"
