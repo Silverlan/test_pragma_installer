@@ -1,0 +1,16 @@
+name: Generate Installer
+description: 'Generates the installer for PRagma.'
+inputs:
+  version:
+    description: 'Pragma Version.'
+    required: true
+  install-directory:
+    description: 'Pragma installation directory'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Download Pragma
+      shell: bash
+      run: |
+        python generate_installer.py --version "${{ inputs.version }}" --install-directory "${{ inputs.install-directory }}"

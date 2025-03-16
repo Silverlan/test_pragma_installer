@@ -1,0 +1,33 @@
+name: Generate Installer
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  # See https://github.com/git-lfs/git-lfs/issues/5749
+  GIT_CLONE_PROTECTION_ACTIVE: 'false'
+
+jobs:
+  build:
+    permissions:
+      actions: write
+      contents: write
+      issues: read
+      pull-requests: read
+
+    name: Generate Installer - ${{ matrix.config.os }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - os: windows-latest
+            name: "Windows x64 MSVC"
+    steps:
+      - name: Setup Pragma
+        uses: Silverlan/test_pragma_installer/github_actions/generate_installer@main
+        with:
+          version: "1.0.0"
+          install-directory: "a/b/c"
