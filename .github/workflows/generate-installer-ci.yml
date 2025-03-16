@@ -40,5 +40,5 @@ jobs:
         uses: Silverlan/test_pragma_installer/github_actions/generate_installer@main
         with:
           version: "1.0.0"
-          install-directory: "pragma/install"
-          deps-directory: "pragma/deps"
+          install-directory: "${{ github.workspace }}/pragma/install"
+          deps-directory: "${{ github.workspace }}/pragma/deps"
