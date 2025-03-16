@@ -27,9 +27,19 @@ jobs:
             name: "Windows x64 MSVC"
     steps:
       - uses: actions/checkout@v2
-      
+
+      - name: Download Pragma
+        shell: bash
+        run: |
+          mkdir pragma
+          cd pragma
+          mkdir deps
+          mkdir install
+
+
       - name: Setup Pragma
         uses: Silverlan/test_pragma_installer/github_actions/generate_installer@main
         with:
           version: "1.0.0"
-          install-directory: "a/b/c"
+          install-directory: "pragma/install"
+          deps-directory: "pragma/deps"

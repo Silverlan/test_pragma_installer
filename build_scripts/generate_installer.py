@@ -5,6 +5,7 @@ from scripts.shared import *
 parser = argparse.ArgumentParser(description='Pragma installer build script', allow_abbrev=False, formatter_class=argparse.ArgumentDefaultsHelpFormatter, epilog="")
 
 parser.add_argument('--version', help='The Pragma Version.', required=True)
+parser.add_argument('--deps-directory', help='Pragma deps directory.', required=True)
 parser.add_argument('--install-directory', help='Pragma installation directory.', required=True)
 
 args,unknown = parser.parse_known_args()
@@ -12,12 +13,13 @@ args = vars(args)
 input_args = args
 
 version = args["version"]
+deps_directory = args["deps_directory"]
 install_directory = args["install_directory"]
 
 print("version: " +str(version))
 
 cur_dir = os.getcwd()
-deps_dir = "E:/projects/pragma/deps"
+deps_dir = deps_directory
 
 os.chdir(deps_dir)
 inno_installer_root = os.getcwd() +"/InnoSetup_installer"
