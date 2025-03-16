@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Download Pragma
+      - name: Create Directories
         shell: bash
         run: |
           mkdir pragma
@@ -36,7 +36,13 @@ jobs:
           mkdir deps
           mkdir install
 
-      - name: Setup Pragma
+      - name: Download and Extract Pragma
+        run: |
+          curl -L -o pragma-win64.zip https://github.com/Silverlan/pragma/releases/download/nightly/pragma-win64.zip
+          unzip pragma-win64.zip -d pragma/install
+          rm pragma-win64.zip
+
+      - name: Generate Installer
         uses: Silverlan/test_pragma_installer/github_actions/generate_installer@main
         with:
           version: "1.0.0"
