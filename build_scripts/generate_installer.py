@@ -18,7 +18,7 @@ install_directory = args["install_directory"]
 
 print("version: " +str(version))
 
-cur_dir = os.getcwd()
+cur_dir = os.getcwd() +"/build_scripts"
 deps_dir = deps_directory
 
 os.chdir(deps_dir)
