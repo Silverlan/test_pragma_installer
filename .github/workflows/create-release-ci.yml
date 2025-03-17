@@ -206,6 +206,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           workflow: generate-installer-ci.yml
-          inputs: |
-            version: "v${{ steps.determine-version.outputs.version }}"
-            tag: "${{ steps.determine-version.outputs.version }}"
+          inputs: '{ "version": "v${{ steps.determine-version.outputs.version }}", "tag": "${{ steps.determine-version.outputs.version }}" }'
