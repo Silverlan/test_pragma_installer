@@ -202,11 +202,10 @@ jobs:
           files: ${{ steps.pdb-debug.outputs.filename }}
 
       - name: Dispatch Generate Installer Workflow
-        uses: peter-evans/workflow-dispatch@v1
+        uses: benc-uk/workflow-dispatch@v1.2.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           workflow: generate-installer-ci.yml
-          ref: main
           inputs: |
             version: "v${{ steps.determine-version.outputs.version }}"
             tag: "${{ steps.determine-version.outputs.version }}"
