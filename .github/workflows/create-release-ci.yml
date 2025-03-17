@@ -43,6 +43,8 @@ jobs:
           wget https://github.com/${{ github.repository }}/archive/refs/tags/nightly.zip
           unzip nightly.zip -d source
           rm nightly.zip
+          oldname=$(find source -mindepth 1 -maxdepth 1 -type d)
+          mv "$oldname" source/pragma-nightly
           fileName="./source/pragma-nightly/core/shared/include/pragma/engine_version.h"
           readarray -t a < "$fileName"
           rm -r source
