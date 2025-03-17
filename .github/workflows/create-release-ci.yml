@@ -12,10 +12,6 @@ permissions:
 
 jobs:
   build:
-    # Required for workflow-dispatch
-    permissions:
-      actions: write
-      
     name: Publish Release
     runs-on: ${{ matrix.config.os }}
     strategy:
