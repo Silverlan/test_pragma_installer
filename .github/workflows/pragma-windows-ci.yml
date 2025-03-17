@@ -111,6 +111,13 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: "debug_pdb.zip"
 
+      - name: Generate Installer
+        uses: Silverlan/test_pragma_installer/github_actions/generate_installer@main
+        with:
+          version: "$GITHUB_SHA"
+          install-directory: "${{ steps.build-pragma.outputs.install-dir }}"
+          deps-directory: "c:/pragma/deps"
+
       - name: Run Tests
         uses: benc-uk/workflow-dispatch@v1
         with:
