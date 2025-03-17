@@ -114,7 +114,7 @@ jobs:
       - name: Generate Installer
         uses: Silverlan/test_pragma_installer/github_actions/generate_installer@main
         with:
-          version: "$GITHUB_SHA"
+          version: "Nightly"
           install-directory: "${{ steps.build-pragma.outputs.install-dir }}"
           deps-directory: "c:/pragma/deps"
 
