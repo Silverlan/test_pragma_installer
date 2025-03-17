@@ -144,7 +144,7 @@ jobs:
         if: runner.os == 'Windows'
         with:
           version: "${{ steps.determine-version.outputs.version }}"
-          install-directory: "${{ steps.build-pragma.outputs.install-dir }}"
+          install-directory: "pragma-windows"
           deps-directory: "deps"
 
       - name: Re-create Zip Archives
