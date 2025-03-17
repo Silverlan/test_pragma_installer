@@ -98,7 +98,7 @@ jobs:
 
       - name: Update PDB release
         if: runner.os == 'Windows' && steps.check-pdb.outputs.exists == 'true'
-        uses: pyTooling/Actions/releaser/composite@main
+        uses: pyTooling/Actions/releaser/composite@v4.2.2
         with:
           tag: latest
           token: ${{ secrets.GITHUB_TOKEN }}
