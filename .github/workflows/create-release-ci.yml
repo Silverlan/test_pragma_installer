@@ -156,6 +156,14 @@ jobs:
           wget https://github.com/${{ github.repository }}/releases/download/nightly/debug_pdb.zip
           filename="debug_pdb.zip"
           echo "filename=$filename" >> $GITHUB_OUTPUT
+
+      - name: Get installer
+        id: installer
+        shell: bash
+        run:   |
+          wget https://github.com/${{ github.repository }}/releases/download/nightly/pragma_setup.exe
+          filename="pragma_setup.exe"
+          echo "filename=$filename" >> $GITHUB_OUTPUT
           
       - name: Generate nightly tag description
         shell: bash
@@ -191,3 +199,10 @@ jobs:
           tag: "v${{ steps.determine-version.outputs.version }}"
           token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ steps.pdb-debug.outputs.filename }}
+            
+      - name: Publish Installer
+        uses: Silverlan/Releaser/releaser/composite@main
+        with:
+          tag: "v${{ steps.determine-version.outputs.version }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: ${{ steps.installer.outputs.filename }}

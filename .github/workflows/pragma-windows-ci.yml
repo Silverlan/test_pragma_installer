@@ -118,6 +118,13 @@ jobs:
           install-directory: "${{ steps.build-pragma.outputs.install-dir }}"
           deps-directory: "c:/pragma/deps"
 
+      - name: Publish Installer
+        uses: Silverlan/Releaser/releaser/composite@main
+        with:
+          tag: "nightly"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: "c:/pragma/deps/pragma_installer/pragma_setup.exe"
+
       - name: Run Tests
         uses: benc-uk/workflow-dispatch@v1
         with:
