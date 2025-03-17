@@ -135,20 +135,6 @@ jobs:
             sed -i 's/pfm_enable_experimental_updates "1"/pfm_enable_experimental_updates "0"/' "$dir/cfg/client.cfg"
           done
 
-      - name: Prepare Installer
-        shell: bash
-        if: runner.os == 'Windows'
-        run:   |
-          mkdir deps
-
-      - name: Generate Installer
-        uses: ./github_actions/generate_installer@main
-        if: runner.os == 'Windows'
-        with:
-          version: "${{ steps.determine-version.outputs.version }}"
-          install-directory: "pragma-windows"
-          deps-directory: "deps"
-
       - name: Re-create Zip Archives
         run: |
           for dir in pragma-windows pragma-linux; do
@@ -215,10 +201,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ steps.pdb-debug.outputs.filename }}
 
-      - name: Publish Installer
-        uses: Silverlan/Releaser/releaser/composite@main
-        if: runner.os == 'Windows'
+      - name: Dispatch Generate Installer Workflow
+        uses: peter-evans/workflow-dispatch@v1
         with:
-          tag: "v${{ steps.determine-version.outputs.version }}"
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: "deps/pragma_installer/pragma_setup.exe"
+          workflow: generate-installer-ci.yml
+          ref: main
+          inputs: |
+            version: "v${{ steps.determine-version.outputs.version }}"
+            tag: "${{ steps.determine-version.outputs.version }}"
