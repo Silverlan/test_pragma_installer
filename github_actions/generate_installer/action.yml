@@ -16,4 +16,5 @@ runs:
     - name: Download Pragma
       shell: bash
       run: |
-        python pragma/build_scripts/generate_installer.py --version "${{ inputs.version }}" --install-directory "${{ inputs.install-directory }}" --deps-directory "${{ inputs.deps-directory }}"
+        cd pragma
+        python build_scripts/generate_installer.py --version "${{ inputs.version }}" --install-directory "${{ inputs.install-directory }}" --deps-directory "${{ inputs.deps-directory }}"
