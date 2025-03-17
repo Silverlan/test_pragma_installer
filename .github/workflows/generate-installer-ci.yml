@@ -11,9 +11,6 @@ on:
         required: true
         type: string
 
-permissions:
-  contents: write
-
 env:
   # See https://github.com/git-lfs/git-lfs/issues/5749
   GIT_CLONE_PROTECTION_ACTIVE: 'false'
