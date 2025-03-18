@@ -10,11 +10,15 @@ inputs:
   deps-directory:
     description: 'Pragma deps directory'
     required: true
+  pragma-directory:
+    description: 'Pragma directory'
+    required: true
+    default: 'pragma'
 runs:
   using: "composite"
   steps:
     - name: Download Pragma
       shell: bash
       run: |
-        cd pragma
+        cd "${{ inputs.pragma-directory }}"
         python build_scripts/generate_installer.py --version "${{ inputs.version }}" --install-directory "${{ inputs.install-directory }}" --deps-directory "${{ inputs.deps-directory }}"

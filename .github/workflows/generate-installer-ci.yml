@@ -57,6 +57,7 @@ jobs:
           version: "${{ github.event.inputs.version }}"
           install-directory: "${{ github.workspace }}/pragma/install"
           deps-directory: "${{ github.workspace }}/pragma/deps"
+          pragma-directory: "."
 
       - name: Publish Installer
         uses: Silverlan/Releaser/releaser/composite@main
