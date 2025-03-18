@@ -183,27 +183,27 @@ jobs:
       #    tag_name: "v${{ steps.determine-version.outputs.version }}"
       #    prerelease: false
 
-      - name: Publish Windows Release
-        uses: pyTooling/Actions/releaser/composite@v4.2.2
-        with:
-          tag: "v${{ steps.determine-version.outputs.version }}"
-          rm: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: ${{ steps.windows-version.outputs.filename }}
-            
-      - name: Publish Linux Release
-        uses: pyTooling/Actions/releaser/composite@v4.2.2
-        with:
-          tag: "v${{ steps.determine-version.outputs.version }}"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: ${{ steps.linux-version.outputs.filename }}
-            
-      - name: Publish PDB Files
-        uses: pyTooling/Actions/releaser/composite@v4.2.2
-        with:
-          tag: "v${{ steps.determine-version.outputs.version }}"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: ${{ steps.pdb-debug.outputs.filename }}
+      #- name: Publish Windows Release
+      #  uses: pyTooling/Actions/releaser/composite@v4.2.2
+      #  with:
+      #    tag: "v${{ steps.determine-version.outputs.version }}"
+      #    rm: true
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    files: ${{ steps.windows-version.outputs.filename }}
+      #      
+      #- name: Publish Linux Release
+      #  uses: pyTooling/Actions/releaser/composite@v4.2.2
+      #  with:
+      #    tag: "v${{ steps.determine-version.outputs.version }}"
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    files: ${{ steps.linux-version.outputs.filename }}
+      #      
+      #- name: Publish PDB Files
+      #  uses: pyTooling/Actions/releaser/composite@v4.2.2
+      #  with:
+      #    tag: "v${{ steps.determine-version.outputs.version }}"
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    files: ${{ steps.pdb-debug.outputs.filename }}
 
       - name: Dispatch Generate Installer Workflow
         uses: benc-uk/workflow-dispatch@v1.2.4
